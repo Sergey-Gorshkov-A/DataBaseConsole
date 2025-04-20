@@ -116,7 +116,6 @@ namespace ConsoleApp1
             {
                 var builder = new HostApplicationBuilder();
 
-                // Настройка контекста базы данных (SQLite для примера)
                 builder.Services.AddDbContext<ZooContext>(options =>
                 {
                     options.UseSqlite($"Data Source={Path.GetFullPath(@"..\..\..\zoo.db")}");
@@ -290,12 +289,12 @@ namespace ConsoleApp1
         }
     }
 
-    abstract class CommandORM
+    public abstract class CommandORM
     {
         public abstract string Execute();
     }
 
-    class Add : CommandORM
+    public class Add : CommandORM
     {
         ReceiverORM receiverORM;
         ZooContext context1;
@@ -377,7 +376,7 @@ namespace ConsoleApp1
         }
     }
 
-    class ReceiverORM
+    public class ReceiverORM
     {
         public string CommandAdd(ZooContext context, string tablename, string[] values)
         {
@@ -1831,7 +1830,7 @@ namespace ConsoleApp1
     }
 
     
-    class InvokerORM
+    public class InvokerORM
     {
         CommandORM command;
         public void SetCommand(CommandORM c)
